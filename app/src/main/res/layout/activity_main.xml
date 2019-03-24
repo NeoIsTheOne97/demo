@@ -36,7 +36,9 @@
         />
 
     <include layout="@layout/fragment_diet" />
+
     <include layout="@layout/fragment_profile" />
+
     <include layout="@layout/fragment_report" />
 
     <android.support.design.widget.AppBarLayout
