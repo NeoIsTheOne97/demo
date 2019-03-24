@@ -23,11 +23,10 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
         //Error
-        /*
         tabLayout.addTab(tabLayout.newTab().setText("Dietary Plans"));
         tabLayout.addTab(tabLayout.newTab().setText("Profile"));
         tabLayout.addTab(tabLayout.newTab().setText("Reports"));
-        */
+
 
         final ViewPager viewPager = findViewById(R.id.pager);
         final PagerAdapter adapter = new TabPageAdapter
