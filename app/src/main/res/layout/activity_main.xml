@@ -24,7 +24,12 @@
             android:id="@+id/tab_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:tabGravity="fill" />
+            app:tabBackground="@color/colorPrimary"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/colorAccent" />
 
     </android.support.design.widget.AppBarLayout>
 
