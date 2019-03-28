@@ -1,9 +1,10 @@
 package com.hexabyte.demo;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-//import android.view.View;
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,7 +12,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class MainActivity extends AppCompatActivity {
+
+
+public class MainActivity extends AppCompatActivity implements profileFragment.OnFragmentInteractionListener, reportFragment.OnFragmentInteractionListener, dietFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
-        //Error
         tabLayout.addTab(tabLayout.newTab().setText("Dietary Plans"));
         tabLayout.addTab(tabLayout.newTab().setText("Profile"));
         tabLayout.addTab(tabLayout.newTab().setText("Reports"));
-
 
         final ViewPager viewPager = findViewById(R.id.pager);
         final PagerAdapter adapter = new TabPageAdapter
@@ -72,5 +73,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onFragmentInteraction(Uri uri)
+    {
+
     }
 }

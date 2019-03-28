@@ -35,11 +35,17 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
-    <include layout="@layout/fragment_diet" />
+    <include
+        layout="@layout/fragment_diet"
+        android:visibility="invisible" />
 
-    <include layout="@layout/fragment_profile" />
+    <include
+        layout="@layout/fragment_profile"
+        android:visibility="invisible" />
 
-    <include layout="@layout/fragment_report" />
+    <include
+        layout="@layout/fragment_report"
+        android:visibility="invisible" />
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
