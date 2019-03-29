@@ -11,8 +11,7 @@ import android.view.MenuItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-
-
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements profileFragment.OnFragmentInteractionListener, reportFragment.OnFragmentInteractionListener, dietFragment.OnFragmentInteractionListener{
 

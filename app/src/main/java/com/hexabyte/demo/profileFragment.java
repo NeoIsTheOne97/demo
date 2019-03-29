@@ -8,6 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import android.widget.Button;
+import android.widget.Toast;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,7 +23,7 @@ import android.view.ViewGroup;
  * Use the {@link profileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class profileFragment extends Fragment {
+public class profileFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -50,10 +56,15 @@ public class profileFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    public void onClick(View view) {
 
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -64,7 +75,17 @@ public class profileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view=inflater.inflate(R.layout.fragment_profile, container, false);
+        Button btn=view.findViewById(R.id.loginBtn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast t=Toast.makeText(getActivity(),"Clicked",Toast.LENGTH_LONG);
+                t.show();
+                DatabaseReference ref=FirebaseDatabase.getInstance().getReference();
+                ref.push().setValue("Hello World");
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
