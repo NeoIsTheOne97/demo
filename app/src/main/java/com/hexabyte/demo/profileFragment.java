@@ -3,6 +3,7 @@ package com.hexabyte.demo;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.EditText;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -70,19 +74,22 @@ public class profileFragment extends Fragment implements View.OnClickListener{
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    Button btn;
+    EditText txt;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_profile, container, false);
-        Button btn=view.findViewById(R.id.loginBtn);
+        btn=view.findViewById(R.id.loginBtn);
+        txt=view.findViewById(R.id.loginTxt);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Toast t=Toast.makeText(getActivity(),"Clicked",Toast.LENGTH_LONG);
                 t.show();
                 DatabaseReference ref=FirebaseDatabase.getInstance().getReference();
-                ref.push().setValue("Hello World");
+                String value=txt.getText().toString();
+                ref.push().setValue(value);
             }
         });
         return view;
