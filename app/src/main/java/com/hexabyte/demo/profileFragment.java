@@ -74,22 +74,34 @@ public class profileFragment extends Fragment implements View.OnClickListener{
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    Button btn;
-    EditText txt;
+
+    User user;
+    Button sBtn;
+    DatabaseReference ref;
+    EditText nameTxt,addTxt,ageTxt;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_profile, container, false);
-        btn=view.findViewById(R.id.loginBtn);
-        txt=view.findViewById(R.id.loginTxt);
-        btn.setOnClickListener(new View.OnClickListener() {
+        sBtn=view.findViewById(R.id.signupBtn);
+        nameTxt=view.findViewById(R.id.signupNameTxt);
+        ageTxt=view.findViewById(R.id.signupAgeTxt);
+        addTxt=view.findViewById(R.id.signupAddTxt);
+
+        ref=FirebaseDatabase.getInstance().getReference().child("Users");
+
+        sBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Toast t=Toast.makeText(getActivity(),"Clicked",Toast.LENGTH_LONG);
-                t.show();
-                DatabaseReference ref=FirebaseDatabase.getInstance().getReference();
-                String value=txt.getText().toString();
-                ref.push().setValue(value);
+
+                String nt=nameTxt.getText().toString();
+                int at=Integer.parseInt(ageTxt.getText().toString());
+                String adt=addTxt.getText().toString();
+                user=new User(nt,at,adt);
+
+                ref.push().setValue(user);
+                Toast toast=Toast.makeText(getActivity(),"Clicked",Toast.LENGTH_LONG);
+                toast.show();
             }
         });
         return view;
