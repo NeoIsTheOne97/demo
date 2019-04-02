@@ -93,7 +93,6 @@ public class profileFragment extends Fragment implements View.OnClickListener{
 
         sBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
                 String nt=nameTxt.getText().toString();
                 int at=Integer.parseInt(ageTxt.getText().toString());
                 String adt=addTxt.getText().toString();
