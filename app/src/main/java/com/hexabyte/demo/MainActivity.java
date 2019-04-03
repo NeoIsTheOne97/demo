@@ -7,13 +7,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity implements profileFragment.OnFragmentInteractionListener, reportFragment.OnFragmentInteractionListener, dietFragment.OnFragmentInteractionListener{
+
+
+public class MainActivity extends AppCompatActivity implements profileFragment.OnFragmentInteractionListener, loginFragment.OnFragmentInteractionListener, signUpFragment.OnFragmentInteractionListener ,reportFragment.OnFragmentInteractionListener, dietFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,11 @@ public class MainActivity extends AppCompatActivity implements profileFragment.O
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+        Fragment mFrag = new signUpFragment();
+        t.replace(R.id.mainLayout, mFrag);
+        t.commit();
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
