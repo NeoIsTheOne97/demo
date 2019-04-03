@@ -52,6 +52,14 @@
         layout="@layout/fragment_report"
         android:visibility="invisible" />
 
+    <include
+        layout="@layout/fragment_login"
+        android:visibility="invisible" />
+
+    <include
+        layout="@layout/fragment_sign_up"
+        android:visibility="invisible" />
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"

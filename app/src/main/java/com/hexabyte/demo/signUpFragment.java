@@ -3,31 +3,28 @@ package com.hexabyte.demo;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import android.widget.Button;
-import android.widget.Toast;
-import android.widget.EditText;
-
-import org.w3c.dom.Text;
+import android.support.v4.app.FragmentTransaction;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link profileFragment.OnFragmentInteractionListener} interface
+ * {@link signUpFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link profileFragment#newInstance} factory method to
+ * Use the {@link signUpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class profileFragment extends Fragment implements View.OnClickListener{
+public class signUpFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,7 +36,7 @@ public class profileFragment extends Fragment implements View.OnClickListener{
 
     private OnFragmentInteractionListener mListener;
 
-    public profileFragment() {
+    public signUpFragment() {
         // Required empty public constructor
     }
 
@@ -49,38 +46,60 @@ public class profileFragment extends Fragment implements View.OnClickListener{
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment profileFragment.
+     * @return A new instance of fragment signUpFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static profileFragment newInstance(String param1, String param2) {
-        profileFragment fragment = new profileFragment();
+    public static signUpFragment newInstance(String param1, String param2) {
+        signUpFragment fragment = new signUpFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
-    public void onClick(View view) {
 
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
-
+    User user;
+    Button sBtn;
+    DatabaseReference ref;
+    EditText nameTxt,addTxt,ageTxt;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false);
+        View view=inflater.inflate(R.layout.fragment_profile, container, false);
+        sBtn=view.findViewById(R.id.signupBtn);
+        nameTxt=view.findViewById(R.id.signupNameTxt);
+        ageTxt=view.findViewById(R.id.signupAgeTxt);
+        addTxt=view.findViewById(R.id.signupAddTxt);
+
+        ref= FirebaseDatabase.getInstance().getReference().child("Users");
+
+        sBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                String nt=nameTxt.getText().toString();
+                int at=Integer.parseInt(ageTxt.getText().toString());
+                String adt=addTxt.getText().toString();
+                user=new User(nt,at,adt);
+
+                ref.push().setValue(user);
+                Toast toast=Toast.makeText(getActivity(),"Clicked",Toast.LENGTH_LONG);
+                toast.show();
+
+                FragmentTransaction t = getFragmentManager().beginTransaction();
+                Fragment mFrag = new loginFragment();
+                t.replace(R.id.signupLayout, mFrag);
+                t.commit();
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
