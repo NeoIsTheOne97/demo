@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements profileFragment.O
 
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
         Fragment mFrag = new signUpFragment();
-        t.replace(R.id.container, mFrag);
+        t.replace(R.id.mainLayout, mFrag);
         t.commit();
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
