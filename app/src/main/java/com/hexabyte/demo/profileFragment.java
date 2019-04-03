@@ -27,7 +27,7 @@ import org.w3c.dom.Text;
  * Use the {@link profileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class profileFragment extends Fragment implements View.OnClickListener{
+public class profileFragment extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,15 +60,9 @@ public class profileFragment extends Fragment implements View.OnClickListener{
         fragment.setArguments(args);
         return fragment;
     }
-    public void onClick(View view) {
-
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);

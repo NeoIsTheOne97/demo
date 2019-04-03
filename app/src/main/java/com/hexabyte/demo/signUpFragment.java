@@ -24,7 +24,7 @@ import android.support.v4.app.FragmentTransaction;
  * Use the {@link signUpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class signUpFragment extends Fragment {
+public class signUpFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -57,24 +57,30 @@ public class signUpFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    public void onClick(View view) {
 
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     User user;
     Button sBtn;
     DatabaseReference ref;
     EditText nameTxt,addTxt,ageTxt;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_profile, container, false);
+        View view=inflater.inflate(R.layout.fragment_sign_up, container, false);
         sBtn=view.findViewById(R.id.signupBtn);
         nameTxt=view.findViewById(R.id.signupNameTxt);
         ageTxt=view.findViewById(R.id.signupAgeTxt);
@@ -90,13 +96,14 @@ public class signUpFragment extends Fragment {
                 user=new User(nt,at,adt);
 
                 ref.push().setValue(user);
+
                 Toast toast=Toast.makeText(getActivity(),"Clicked",Toast.LENGTH_LONG);
                 toast.show();
 
                 FragmentTransaction t = getFragmentManager().beginTransaction();
-                Fragment mFrag = new loginFragment();
-                t.replace(R.id.signupLayout, mFrag);
+                t.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.signupLayout,  new loginFragment());//Check Again
                 t.commit();
+
             }
         });
         return view;

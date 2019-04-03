@@ -21,7 +21,7 @@ public class TabPageAdapter extends FragmentPagerAdapter {
                 dietFragment tab1 = new dietFragment();
                 return tab1;
             case 1:
-                profileFragment tab2 = new profileFragment();
+                signUpFragment tab2 = new signUpFragment();
                 return tab2;
             case 2:
                 reportFragment tab3 = new reportFragment();

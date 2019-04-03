@@ -22,13 +22,17 @@ public class MainActivity extends AppCompatActivity implements profileFragment.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
+        //Error
+        /*
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
         Fragment mFrag = new signUpFragment();
         t.replace(R.id.mainLayout, mFrag);
         t.commit();
+        */
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
