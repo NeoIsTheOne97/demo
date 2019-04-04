@@ -70,10 +70,10 @@ public class signUpFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    User user;
-    Button sBtn;
-    DatabaseReference ref;
-    EditText nameTxt,addTxt,ageTxt;
+    public User user;
+    public Button sBtn;
+    public DatabaseReference ref;
+    public EditText nameTxt,addTxt,ageTxt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
