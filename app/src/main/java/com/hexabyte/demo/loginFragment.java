@@ -5,12 +5,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Iterator;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -18,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.GenericTypeIndicator;
 
 import com.hexabyte.demo.signUpFragment.OnFragmentInteractionListener;
 
@@ -73,7 +81,7 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
     }
 
     public DatabaseReference ref;
-    TextView demoValue;
+    public TextView demoValue;
     public Button lBtn;
     public EditText idTxt,passTxt;
     public TextView suTxtClick;
@@ -105,15 +113,33 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
         lgnTxtClick=view.findViewById(R.id.loginTextClick);
         */
 
-        /*
         demoValue=view.findViewById(R.id.textView2);
+
+        ref= FirebaseDatabase.getInstance().getReference().child("Users");
+
         lBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                ref.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String value = dataSnapshot.getValue(String.class);
-                        demoValue.setText(value);
+                        boolean flag=false;
+                        OL:for (DataSnapshot data1: dataSnapshot.getChildren()) {
+                            IL:for (DataSnapshot data2: data1.getChildren()) {
+                                if(data2.getKey().equals("name") && data2.getValue().toString().equalsIgnoreCase(idTxt.getText().toString()))
+                                {
+                                    Toast toast=Toast.makeText(getActivity(),"Allowed",Toast.LENGTH_LONG);
+                                    toast.show();
+                                    flag=true;
+                                    break OL;
+                                }
+                            }
+                            if(!flag)
+                            {
+                                Toast toast=Toast.makeText(getActivity(),"Disallowed",Toast.LENGTH_LONG);
+                                toast.show();
+                            }
+                        }
+
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
@@ -121,7 +147,6 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
                 });
             }
         });
-        */
 
         suTxtClick.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){

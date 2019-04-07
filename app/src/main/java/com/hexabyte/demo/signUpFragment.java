@@ -112,7 +112,7 @@ public class signUpFragment extends Fragment implements View.OnClickListener{
 
         lgnTxtClick.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //Try and change this in the future
+                //MUST change this in the future
                 sBtn.setVisibility(View.INVISIBLE);
                 nameTxt.setVisibility(View.INVISIBLE);
                 ageTxt.setVisibility(View.INVISIBLE);
