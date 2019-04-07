@@ -79,24 +79,25 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
                              Bundle savedInstanceState) {
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_sign_up, container, false);
+        View view=inflater.inflate(R.layout.fragment_login, container, false);
+        /*
         lBtn=view.findViewById(R.id.loginBtn);
         demoValue=view.findViewById(R.id.textView2);
         lBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                ref.child("value").addListenerForSingleValueEvent(new ValueEventListener() {
+                ref.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String value = dataSnapshot.getValue(String.class);
                         demoValue.setText(value);
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
             }
         });
+        */
         return view;
     }
 

@@ -100,15 +100,20 @@ public class signUpFragment extends Fragment implements View.OnClickListener{
                 Toast toast=Toast.makeText(getActivity(),"Clicked",Toast.LENGTH_LONG);
                 toast.show();
 
-                FragmentTransaction t = getFragmentManager().beginTransaction();
-                t.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).replace(R.id.signupLayout,new loginFragment(),null);
-                t.commit();
+                nameTxt.setText("");
+                ageTxt.setText("");
+                addTxt.setText("");
 
                 //Try and change this in the future
                 sBtn.setVisibility(View.GONE);
                 nameTxt.setVisibility(View.GONE);
                 ageTxt.setVisibility(View.GONE);
                 addTxt.setVisibility(View.GONE);
+
+                FragmentTransaction t = getFragmentManager().beginTransaction();
+                t.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right).replace(R.id.signupLayout,new loginFragment());
+                t.commit();
+
             }
         });
         return view;

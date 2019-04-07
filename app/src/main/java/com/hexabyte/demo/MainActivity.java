@@ -26,8 +26,7 @@ public class MainActivity extends AppCompatActivity implements profileFragment.O
         //Error
         /*
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-        Fragment mFrag = new signUpFragment();
-        t.replace(R.id.mainLayout, mFrag);
+        t.replace(R.id.mainLayout, new signUpFragment());
         t.commit();
         */
 
