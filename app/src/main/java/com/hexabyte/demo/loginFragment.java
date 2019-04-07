@@ -94,7 +94,9 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
         View view=inflater.inflate(R.layout.fragment_login, container, false);
         idTxt=view.findViewById(R.id.idTxt);
         passTxt=view.findViewById(R.id.passTxt);
+        lBtn=view.findViewById(R.id.loginBtn);
         suTxtClick=view.findViewById(R.id.signupTextClick);
+
         /*
         sBtn=view.findViewById(R.id.signupBtn);
         nameTxt=view.findViewById(R.id.signupNameTxt);
@@ -104,7 +106,6 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
         */
 
         /*
-        lBtn=view.findViewById(R.id.loginBtn);
         demoValue=view.findViewById(R.id.textView2);
         lBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -121,10 +122,14 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
             }
         });
         */
+
         suTxtClick.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 idTxt.setVisibility(View.INVISIBLE);
                 passTxt.setVisibility(View.INVISIBLE);
+                lBtn.setVisibility(View.INVISIBLE);
+                suTxtClick.setVisibility(View.INVISIBLE);
+
                 /*
                 sBtn.setVisibility(View.VISIBLE);
                 nameTxt.setVisibility(View.VISIBLE);
@@ -133,11 +138,15 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
                 lgnTxtClick.setVisibility(View.VISIBLE);
                 */
 
+                //Error
+                /*
                 FragmentTransaction t = getFragmentManager().beginTransaction();
                 t.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right).replace(R.id.signupLayout,new signUpFragment());
                 t.commit();
+                */
             }
         });
+
         return view;
     }
 
