@@ -37,6 +37,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
-        android:paddingTop="0dp"
-        android:text="TextView" />
+        android:paddingTop="0dp" />
+
+    <TextView
+        android:id="@+id/signupTextClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="331dp"
+        android:clickable="true"
+        android:text="Sign Up First" />
 </RelativeLayout>

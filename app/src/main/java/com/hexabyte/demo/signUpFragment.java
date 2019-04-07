@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -74,6 +75,7 @@ public class signUpFragment extends Fragment implements View.OnClickListener{
     public Button sBtn;
     public DatabaseReference ref;
     public EditText nameTxt,addTxt,ageTxt;
+    public TextView lgnTxtClick;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,6 +87,7 @@ public class signUpFragment extends Fragment implements View.OnClickListener{
         nameTxt=view.findViewById(R.id.signupNameTxt);
         ageTxt=view.findViewById(R.id.signupAgeTxt);
         addTxt=view.findViewById(R.id.signupAddTxt);
+        lgnTxtClick=view.findViewById(R.id.loginTextClick);
 
         ref= FirebaseDatabase.getInstance().getReference().child("Users");
 
@@ -104,16 +107,21 @@ public class signUpFragment extends Fragment implements View.OnClickListener{
                 ageTxt.setText("");
                 addTxt.setText("");
 
+            }
+        });
+
+        lgnTxtClick.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
                 //Try and change this in the future
-                sBtn.setVisibility(View.GONE);
-                nameTxt.setVisibility(View.GONE);
-                ageTxt.setVisibility(View.GONE);
-                addTxt.setVisibility(View.GONE);
+                sBtn.setVisibility(View.INVISIBLE);
+                nameTxt.setVisibility(View.INVISIBLE);
+                ageTxt.setVisibility(View.INVISIBLE);
+                addTxt.setVisibility(View.INVISIBLE);
+                lgnTxtClick.setVisibility(View.INVISIBLE);
 
                 FragmentTransaction t = getFragmentManager().beginTransaction();
                 t.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right).replace(R.id.signupLayout,new loginFragment());
                 t.commit();
-
             }
         });
         return view;

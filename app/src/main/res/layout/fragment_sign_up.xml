@@ -42,4 +42,13 @@
         android:hint="Address"
         android:inputType="textPersonName" />
 
+    <TextView
+        android:id="@+id/loginTextClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="406dp"
+        android:clickable="true"
+        android:text="Login Instead" />
+
 </RelativeLayout>

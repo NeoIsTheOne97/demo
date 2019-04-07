@@ -4,10 +4,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.view.ViewGroup;
 
 import com.google.firebase.database.DatabaseReference;
@@ -72,7 +74,17 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
 
     public DatabaseReference ref;
     TextView demoValue;
-    Button lBtn;
+    public Button lBtn;
+    public EditText idTxt,passTxt;
+    public TextView suTxtClick;
+
+    //Attempted Retrieval of previous Sign Up Fragment; Unsuccessful
+    /*
+    //From Sign Up Fragment
+    public EditText nameTxt,addTxt,ageTxt;
+    public Button sBtn;
+    public TextView lgnTxtClick;
+    */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +92,17 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_login, container, false);
+        idTxt=view.findViewById(R.id.idTxt);
+        passTxt=view.findViewById(R.id.passTxt);
+        suTxtClick=view.findViewById(R.id.signupTextClick);
+        /*
+        sBtn=view.findViewById(R.id.signupBtn);
+        nameTxt=view.findViewById(R.id.signupNameTxt);
+        ageTxt=view.findViewById(R.id.signupAgeTxt);
+        addTxt=view.findViewById(R.id.signupAddTxt);
+        lgnTxtClick=view.findViewById(R.id.loginTextClick);
+        */
+
         /*
         lBtn=view.findViewById(R.id.loginBtn);
         demoValue=view.findViewById(R.id.textView2);
@@ -98,6 +121,23 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
             }
         });
         */
+        suTxtClick.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                idTxt.setVisibility(View.INVISIBLE);
+                passTxt.setVisibility(View.INVISIBLE);
+                /*
+                sBtn.setVisibility(View.VISIBLE);
+                nameTxt.setVisibility(View.VISIBLE);
+                ageTxt.setVisibility(View.VISIBLE);
+                addTxt.setVisibility(View.VISIBLE);
+                lgnTxtClick.setVisibility(View.VISIBLE);
+                */
+
+                FragmentTransaction t = getFragmentManager().beginTransaction();
+                t.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right).replace(R.id.signupLayout,new signUpFragment());
+                t.commit();
+            }
+        });
         return view;
     }
 
