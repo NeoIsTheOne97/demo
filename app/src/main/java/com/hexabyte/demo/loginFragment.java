@@ -123,22 +123,24 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         boolean flag=false;
-                        OL:for (DataSnapshot data1: dataSnapshot.getChildren()) {
-                            IL:for (DataSnapshot data2: data1.getChildren()) {
-                                if(data2.getKey().equals("name") && data2.getValue().toString().equalsIgnoreCase(idTxt.getText().toString()))
-                                {
-                                    Toast toast=Toast.makeText(getActivity(),"Allowed",Toast.LENGTH_LONG);
-                                    toast.show();
-                                    flag=true;
-                                    break OL;
+                            OL:
+                            for (DataSnapshot data1 : dataSnapshot.getChildren()) {
+                                IL:
+                                for (DataSnapshot data2 : data1.getChildren()) {
+                                    if (data2.getKey().equals("name") && data2.getValue().toString().equalsIgnoreCase(idTxt.getText().toString())) {
+                                        flag = true;
+                                        break OL;
+                                    }
                                 }
                             }
-                            if(!flag)
-                            {
-                                Toast toast=Toast.makeText(getActivity(),"Disallowed",Toast.LENGTH_LONG);
+                            if(flag) {
+                                Toast toast = Toast.makeText(getActivity(), "Allowed", Toast.LENGTH_LONG);
                                 toast.show();
                             }
-                        }
+                            else{
+                                    Toast toast = Toast.makeText(getActivity(), "Disallowed", Toast.LENGTH_LONG);
+                                    toast.show();
+                            }
 
                     }
                     @Override
