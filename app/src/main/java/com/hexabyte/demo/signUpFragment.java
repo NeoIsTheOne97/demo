@@ -80,8 +80,6 @@ public class signUpFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_sign_up, container, false);
         sBtn=view.findViewById(R.id.signupBtn);
         nameTxt=view.findViewById(R.id.signupNameTxt);
@@ -112,7 +110,7 @@ public class signUpFragment extends Fragment implements View.OnClickListener{
 
         lgnTxtClick.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //MUST change this in the future
+
                 sBtn.setVisibility(View.INVISIBLE);
                 nameTxt.setVisibility(View.INVISIBLE);
                 ageTxt.setVisibility(View.INVISIBLE);
@@ -122,6 +120,8 @@ public class signUpFragment extends Fragment implements View.OnClickListener{
                 FragmentTransaction t = getFragmentManager().beginTransaction();
                 t.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right).replace(R.id.signupLayout,new loginFragment());
                 t.commit();
+
+
             }
         });
         return view;

@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements profileFragment.O
         t.commit();
         */
 
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements profileFragment.O
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.hexabyte.demo;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -86,7 +87,6 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
     public EditText idTxt,passTxt;
     public TextView suTxtClick;
 
-    //Attempted Retrieval of previous Sign Up Fragment; Unsuccessful
     /*
     //From Sign Up Fragment
     public EditText nameTxt,addTxt,ageTxt;
@@ -97,21 +97,11 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_login, container, false);
         idTxt=view.findViewById(R.id.idTxt);
         passTxt=view.findViewById(R.id.passTxt);
         lBtn=view.findViewById(R.id.loginBtn);
         suTxtClick=view.findViewById(R.id.signupTextClick);
-
-        /*
-        sBtn=view.findViewById(R.id.signupBtn);
-        nameTxt=view.findViewById(R.id.signupNameTxt);
-        ageTxt=view.findViewById(R.id.signupAgeTxt);
-        addTxt=view.findViewById(R.id.signupAddTxt);
-        lgnTxtClick=view.findViewById(R.id.loginTextClick);
-        */
 
         demoValue=view.findViewById(R.id.textView2);
 
@@ -134,17 +124,19 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
                                 }
                             }
                             if(flag) {
-                                Toast toast = Toast.makeText(getActivity(), "Allowed", Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(getContext(), "Allowed", Toast.LENGTH_LONG);
                                 toast.show();
                             }
                             else{
-                                    Toast toast = Toast.makeText(getActivity(), "Disallowed", Toast.LENGTH_LONG);
-                                    toast.show();
+                                Toast toast = Toast.makeText(getContext(), "Disallowed", Toast.LENGTH_LONG);
+                                toast.show();
                             }
 
                     }
+
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
                     }
                 });
             }
@@ -157,20 +149,10 @@ public class loginFragment extends Fragment implements OnFragmentInteractionList
                 lBtn.setVisibility(View.INVISIBLE);
                 suTxtClick.setVisibility(View.INVISIBLE);
 
-                /*
-                sBtn.setVisibility(View.VISIBLE);
-                nameTxt.setVisibility(View.VISIBLE);
-                ageTxt.setVisibility(View.VISIBLE);
-                addTxt.setVisibility(View.VISIBLE);
-                lgnTxtClick.setVisibility(View.VISIBLE);
-                */
-
-                //Error
-                /*
                 FragmentTransaction t = getFragmentManager().beginTransaction();
                 t.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right).replace(R.id.signupLayout,new signUpFragment());
                 t.commit();
-                */
+
             }
         });
 
